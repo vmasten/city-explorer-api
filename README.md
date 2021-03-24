@@ -15,9 +15,15 @@ A simple server built with Node.js to serve as a backend for a React frontend, i
 Uses Node.js here, React on the frontend in [City Explorer](https://github.com/vmasten/city-explorer)
 
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+Author: Vince Masten <vmasten@me.com>
+Date:   Tue Mar 23 18:50:39 2021 -0700
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+    Express server functional to spec
+
+Author: Vince Masten <vmasten@me.com>
+Date:   Tue Mar 23 13:50:23 2021 -0700
+
+    first commit
 
 ## Features
 
