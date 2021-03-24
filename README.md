@@ -4,18 +4,51 @@
 **Version**: 1.0.0 
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
+A simple server built with Node.js to serve as a backend for a React frontend, in this case the primary City Explorer project.
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+1. Clone repo
+2. `npm run build` to build out the project
+3. `nodemon` to see it work
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+Uses Node.js here, React on the frontend in [City Explorer](https://github.com/vmasten/city-explorer)
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
-## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+## Features
+
+Name of feature: Set up your server repository
+
+Estimate of time needed to complete: 10-15 mins
+
+Start time: 1:45pm
+
+Finish time: 1:59pm
+
+Actual time needed to complete: 14 mins
+
+
+Name of feature: Weather
+
+Estimate of time needed to complete: 120 mins
+
+Start time: 2:00pm
+
+Finish time: 5:00pm
+
+Actual time needed to complete: 180 mins
+
+
+Name of feature: Errors (revisited)
+
+Estimate of time needed to complete: 10 mins
+
+Start time: 6:00pm
+
+Finish time: 6:15pm
+
+Actual time needed to complete: 15 mins
