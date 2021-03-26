@@ -19,7 +19,7 @@ Uses Node.js here, React on the frontend in [City Explorer](https://github.com/v
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
-## Features
+## Features (03.24)
 
 Name of feature: Set up your server repository
 
@@ -52,3 +52,15 @@ Start time: 6:00pm
 Finish time: 6:15pm
 
 Actual time needed to complete: 15 mins
+
+## Features (03.24)
+
+Name of feature: Weather (live)
+
+Estimate of time needed to complete: 60-120 mins
+
+Start time: 1:45pm
+
+Finish time: 3:47pm
+
+Actual time needed to complete: 122 mins
