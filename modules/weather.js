@@ -4,6 +4,16 @@ const superagent = require('superagent');
 require('dotenv').config();
 let cache = require('./cache');
 
+function weatherHandler(request, response) {
+  const { lat, lon } = request.query;
+  getWeather(lat, lon)
+    .then(summaries => response.send(summaries))
+    .catch((error) => {
+      console.error(error);
+      response.status(500).send('Sorry. Something went wrong!')
+  });
+}  
+
 function getWeather(latitude, longitude) {
   console.log('here')
   const key = 'weather-' + latitude + longitude;
@@ -24,6 +34,7 @@ function getWeather(latitude, longitude) {
     cache[key] = {};
     cache[key].timestamp = Date.now();
     cache[key].data = superagent.get(url)
+    .query(queryParams)
     .then(response => parseWeather(response.body));
   }
   
@@ -48,4 +59,4 @@ class Weather {
   }
 }
 
-module.exports = getWeather;
+module.exports = weatherHandler;

@@ -1,5 +1,5 @@
 'use strict';
 
-const unreliableDB = {};
+let unreliableDB = {};
 
 module.exports = unreliableDB;
