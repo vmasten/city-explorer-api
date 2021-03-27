@@ -1,30 +1,50 @@
 'use strict';
 
 const superagent = require('superagent');
+require('dotenv').config();
+let cache = require('./cache');
 
-
-function getWeather (request, response) {
-  const lat = request.query.lat
-  const lon = request.query.lon
+function getWeather(latitude, longitude) {
+  console.log('here')
+  const key = 'weather-' + latitude + longitude;
   
-  superagent.get(`${process.env.WEATHER_URL}?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}`)
-    .then(res => {
-      const currentWeather = res.body
-      const weatherData = currentWeather.data.map((obj) => {
-        return new Forecast(obj.weather.description, obj.valid_date);
-      });
-      response.status(200).send(weatherData);
-    })
-    .catch(err => {
-      console.log('superagent failed');
-      response.status(500).send('kerplode! something broke on our end :(')
-    })
+  const url = 'http://api.weatherbit.io/v2.0/forecast/daily';
+  const queryParams = {
+    key: process.env.WEATHER_API_KEY,
+    lang: 'en',
+    lat: latitude,
+    lon: longitude,
+    days: 5,
+  };
+  
+  if (cache[key] !== undefined && (Date.now() - cache[key].timestamp < 50000)) {
+    console.log('Cache hit');
+  } else {
+    console.log('Cache miss');
+    cache[key] = {};
+    cache[key].timestamp = Date.now();
+    cache[key].data = superagent.get(url)
+    .then(response => parseWeather(response.body));
+  }
+  
+  return cache[key].data;
 }
 
-class Forecast { 
-  constructor(description, date) {
-  this.description = description;
-  this.date = date;
+function parseWeather(weatherData) {
+  try {
+    const weatherSummaries = weatherData.data.map(day => {
+      return new Weather(day);
+    });
+    return Promise.resolve(weatherSummaries);
+  } catch (e) {
+    return Promise.reject(e);
+  }
+}
+
+class Weather {
+  constructor(day) {
+    this.forecast = day.weather.description;
+    this.time = day.datetime;
   }
 }
 
