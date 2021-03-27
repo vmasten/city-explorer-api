@@ -27,7 +27,8 @@ function getWeather(latitude, longitude) {
     days: 5,
   };
   
-  if (cache[key] !== undefined && (Date.now() - cache[key].timestamp < 50000)) {
+  if (cache[key] !== undefined && (Date.now() - cache[key].timestamp < 43200)) {
+    //holds data for 12 hours so the forecast gets updated twice daily
     console.log('Cache hit');
   } else {
     console.log('Cache miss');
@@ -54,8 +55,8 @@ function parseWeather(weatherData) {
 
 class Weather {
   constructor(day) {
-    this.forecast = day.weather.description;
-    this.time = day.datetime;
+    this.description = day.weather.description;
+    this.date = day.datetime;
   }
 }
 
