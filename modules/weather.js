@@ -15,10 +15,9 @@ function weatherHandler(request, response) {
 }  
 
 function getWeather(latitude, longitude) {
-  console.log('here')
   const key = 'weather-' + latitude + longitude;
   
-  const url = 'http://api.weatherbit.io/v2.0/forecast/daily';
+  const url = process.env.WEATHER_URL;
   const queryParams = {
     key: process.env.WEATHER_API_KEY,
     lang: 'en',
@@ -29,11 +28,12 @@ function getWeather(latitude, longitude) {
   
   if (cache[key] !== undefined && (Date.now() - cache[key].timestamp < 43200)) {
     //holds data for 12 hours so the forecast gets updated twice daily
-    console.log('Cache hit');
+    console.log('weather cache hit');
   } else {
-    console.log('Cache miss');
+    console.log('weather cache miss');
     cache[key] = {};
     cache[key].timestamp = Date.now();
+    
     cache[key].data = superagent.get(url)
     .query(queryParams)
     .then(response => parseWeather(response.body));
