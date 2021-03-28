@@ -1,17 +1,17 @@
-'use strict'
+'use strict';
 
+require('dotenv').config();
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const dotenv = require('dotenv').config();
 
-const getWeather = require('./modules/weather');
+const weatherHandler = require('./modules/weather');
 const getMovies = require('./modules/movies')
+const app = express();
+const PORT = process.env.PORT || 3002;
 
 app.use(cors());
-app.get('/weather', getWeather);
+app.get('/weather', weatherHandler);
 app.get('/movies', getMovies)
 
-const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => console.log(`listening on ${PORT}`));
+app.listen(PORT, () => console.log(`Server up on ${PORT}`));
